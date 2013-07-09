@@ -10,3 +10,4 @@
 .kitchen
 bin
 .kitchen.local.yml
+vendor/cookbooks

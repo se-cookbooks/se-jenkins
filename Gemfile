@@ -1,15 +1,18 @@
 source 'https://rubygems.org'
 
-gem 'foodcritic'
-gem 'berkshelf'
-gem 'thor-foodcritic'
+gem 'berkshelf', '~> 2.0.0'
 gem 'thor-scmversion'
 
-group :integration do
-  gem 'test-kitchen', :git => "git://github.com/opscode/test-kitchen.git"
-  gem 'kitchen-vagrant', :git => "git://github.com/opscode/kitchen-vagrant.git"
+group :test do
+  gem 'chefspec',         '~> 1.3'
+  gem 'foodcritic',       '~> 2.1'
+  gem 'test-kitchen',     '~> 1.0.0.alpha'
+  gem 'kitchen-ec2',      '~> 0.5'
+  gem 'kitchen-vagrant',  '~> 0.10'
 
-  # Change .kitchen.yml's driver_plugin to ec2 and populate
-  # .kitchen.local.yml's driver_config with aws auth data
-  gem 'kitchen-ec2', :git => "git://github.com/opscode/kitchen-ec2.git"
+  gem 'guard',             '~> 1.8'
+  gem 'guard-foodcritic',  '~> 1.0'
+  gem 'guard-kitchen',     '~> 0.0'
+  gem 'guard-rspec',       '~> 3.0'
+  gem 'terminal-notifier-guard'
 end
