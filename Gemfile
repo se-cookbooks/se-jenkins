@@ -3,6 +3,10 @@ source 'https://rubygems.org'
 gem 'berkshelf', '~> 2.0.0'
 gem 'thor-scmversion'
 
+group :development do
+  gem 'strainer'
+end
+
 group :test do
   gem 'chefspec',         '~> 1.3'
   gem 'foodcritic',       '~> 2.1'
