@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Install dependencies
+bundle check || bundle install
+
+# Run knife tests
+bundle exec knife cookbook test
+
+# Run foodcritic linter
+bundle exec foodcritic -f any
+
+# Run specs
+bundle exec rspec
