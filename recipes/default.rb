@@ -23,9 +23,6 @@ include_recipe "se-ruby::ruby19"
 include_recipe "se-ruby::ruby20"
 include_recipe "se-ruby"
 
-# TODO:
-# - add git config (hudson.plugins.git.GitSCM.xml)
-# - add campfire config (hudson.plugins.campfire.CampfireNotifier.xml)
-
 include_recipe "se-jenkins::_ssh_keys"
 include_recipe "se-jenkins::_bundler_config"
+include_recipe "se-jenkins::_plugin_configs"
