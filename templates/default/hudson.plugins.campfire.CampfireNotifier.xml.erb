@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.campfire.DescriptorImpl plugin="campfire@2.6">
+  <enabled>false</enabled>
+  <subdomain><%= node['se-jenkins']['campfire']['account'] %></subdomain>
+  <token><%= node['se-jenkins']['campfire']['token'] %></token>
+  <room><%= node['se-jenkins']['campfire']['room'] %></room>
+  <hudsonUrl><%= node['jenkins']['server']['url'] %></hudsonUrl>
+  <ssl>true</ssl>
+  <smartNotify>false</smartNotify>
+  <sound>false</sound>
+</hudson.plugins.campfire.DescriptorImpl>
