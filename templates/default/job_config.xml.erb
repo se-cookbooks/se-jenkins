@@ -73,7 +73,7 @@
     </hudson.tasks.ArtifactArchiver>
     <hudson.plugins.campfire.CampfireNotifier plugin="campfire@2.6">
       <campfire>
-        <subdomain><%= node['se-jenkins']['campfire']['account'] %><subdomain>
+        <subdomain><%= node['se-jenkins']['campfire']['account'] %></subdomain>
         <token><%= node['se-jenkins']['campfire']['token'] %></token>
         <ssl>true</ssl>
       </campfire>
