@@ -19,7 +19,7 @@
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name><%= @job.branches %></name>
+        <name><%= @job.branches.join(",") %></name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <disableSubmodules>false</disableSubmodules>
@@ -52,7 +52,11 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers/>
+  <triggers>
+    <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.7">
+      <spec></spec>
+    </com.cloudbees.jenkins.GitHubPushTrigger>
+  </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
@@ -63,10 +67,25 @@
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts><%= @job.artifacts %></artifacts>
+      <artifacts><%= @job.artifacts.join(",") %></artifacts>
       <latestOnly>false</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
     </hudson.tasks.ArtifactArchiver>
+    <hudson.plugins.campfire.CampfireNotifier plugin="campfire@2.6">
+      <campfire>
+        <subdomain><%= node['se-jenkins']['campfire']['account'] %><subdomain>
+        <token><%= node['se-jenkins']['campfire']['token'] %></token>
+        <ssl>true</ssl>
+      </campfire>
+      <room>
+        <campfire reference="../../campfire"/>
+        <name><%= node['se-jenkins']['campfire']['room_name'] %></name>
+        <id><%= node['se-jenkins']['campfire']['room'] %></id>
+      </room>
+      <hudsonUrl><%= node['jenkins']['server']['url'] %></hudsonUrl>
+      <smartNotify>false</smartNotify>
+      <sound>false</sound>
+    </hudson.plugins.campfire.CampfireNotifier>
   </publishers>
   <buildWrappers/>
 </project>
