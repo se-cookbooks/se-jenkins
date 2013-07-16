@@ -1,5 +1,10 @@
 require 'ostruct'
 
+include_recipe "percona::server"
+
+# Prereqs to build StreetEasy/se.
+include_recipe "streeteasy_com::_prereqs"
+
 # TODO: put jobs into a data bag
 jobs = {
   "StreetEasy/se-cli" => {
@@ -7,6 +12,12 @@ jobs = {
     branches:      ["master"],
     build_command: "script/ci >build.log",
     ruby_versions: ["ree-1.8.7-2012.02", "1.9.3p385"]
+  },
+
+  "StreetEasy/se" => {
+    artifacts:     ["*.log", "*.html"],
+    branches:      ["specs-without-se-data"],
+    build_command: "script/ci"
   }
 }
 
