@@ -223,8 +223,6 @@ GEM
       wasabi (~> 1.0)
     slop (3.4.5)
     solve (0.6.0)
-    strainer (3.0.4)
-      berkshelf (~> 2.0)
     systemu (2.5.2)
     terminal-notifier-guard (1.5.3)
     test-kitchen (1.0.0.alpha.7)
@@ -271,7 +269,6 @@ DEPENDENCIES
   guard-rspec (~> 3.0)
   kitchen-ec2 (~> 0.5)
   kitchen-vagrant (~> 0.10)
-  strainer
   terminal-notifier-guard
   test-kitchen (~> 1.0.0.alpha)
   thor-scmversion
