@@ -22,4 +22,6 @@ suites:
 - name: default
   run_list:
   - recipe[<%= File.expand_path('.').split('/').last %>]
-  attributes: {}
+
+  attributes:
+    <%= File.read(".attributes.yml") %>
