@@ -6,8 +6,8 @@ directory ssh_dir do
   mode  0700
 end
 
-cookbook_file "#{ssh_dir}/id_rsa" do
-  source "id_rsa"
+file "#{ssh_dir}/id_rsa" do
+  content node['se-jenkins']['ssh_key']
   owner node['jenkins']['server']['user']
   group node['jenkins']['server']['group']
   mode  0600
