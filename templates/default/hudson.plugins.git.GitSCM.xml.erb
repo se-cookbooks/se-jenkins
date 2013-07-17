@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <hudson.plugins.git.GitSCM_-DescriptorImpl plugin="git@1.4.0">
   <generation>1</generation>
-  <globalConfigName>StreetEasy</globalConfigName>
-  <globalConfigEmail>dev@streeteasy.com</globalConfigEmail>
+  <globalConfigName><%= node['se-jenkins']['git']['name'] %></globalConfigName>
+  <globalConfigEmail><%= node['se-jenkisn']['git']['email'] %></globalConfigEmail>
   <createAccountBasedOnEmail>false</createAccountBasedOnEmail>
 </hudson.plugins.git.GitSCM_-DescriptorImpl>
