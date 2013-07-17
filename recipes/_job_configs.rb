@@ -35,7 +35,7 @@ jobs.each do |job_project, job_data|
   template job_config do
     source "job_config.xml.erb"
     variables({ job: job })
-    notifies :update, resources(jenkins_job: job_name), :immediately
-    notifies :build,  resources(jenkins_job: job_name), :immediately
+    notifies :update, "jenkins_job[#{job_name}]", :immediately
+    notifies :build,  "jenkins_job[#{job_name}]", :immediately
   end
 end
