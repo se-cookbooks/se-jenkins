@@ -1,6 +1,12 @@
 se-jenkins:
+  ssh_key:
+
   campfire:
     account:
     room_id:
     room_name:
     token:
+
+  git:
+    email:
+    name:
