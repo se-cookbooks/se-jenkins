@@ -7,8 +7,13 @@ platforms:
 - name: ubuntu-12.04
   driver_config:
     box: precise64
+    provider: vmware_fusion
     network:
       - ['private_network', {ip: '33.33.33.10'}]
+    customize:
+      cpus: 2
+      numvcpus: 2
+      memory: 1024
 
   run_list:
   - recipe[apt]
