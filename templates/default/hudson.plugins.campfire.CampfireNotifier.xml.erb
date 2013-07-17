@@ -3,7 +3,7 @@
   <enabled>false</enabled>
   <subdomain><%= node['se-jenkins']['campfire']['account'] %></subdomain>
   <token><%= node['se-jenkins']['campfire']['token'] %></token>
-  <room><%= node['se-jenkins']['campfire']['room'] %></room>
+  <room><%= node['se-jenkins']['campfire']['room_name'] %></room>
   <hudsonUrl><%= node['jenkins']['server']['url'] %></hudsonUrl>
   <ssl>true</ssl>
   <smartNotify>false</smartNotify>
