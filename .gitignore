@@ -13,4 +13,5 @@
 bin
 tmp
 vendor/cookbooks
+Berksfile.lock
 VERSION
