@@ -5,6 +5,11 @@ describe 'se-jenkins::default' do
     ChefSpec::ChefRunner.new(platform: 'ubuntu', version: '12.04', log_level: :fatal).converge('se-jenkins::default')
   end
 
+  before do
+    Chef::Recipe.any_instance.stub(:data_bag_item).with('jenkins', 'jobs')
+      .and_return('jobs' => {'StreetEasy/se-cli' => {}})
+  end
+
   it 'sets the version' do
     expect(chef_run.node['jenkins']['server']['version']).to match(/\d+\.\d+/)
   end
