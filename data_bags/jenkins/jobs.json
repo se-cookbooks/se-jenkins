@@ -1,0 +1,15 @@
+{
+  "id": "jobs",
+
+  "jobs": {
+    "StreetEasy/se": {
+      "branches": ["specs-without-se-data"],
+      "include_recipes": [
+        "percona::server",
+        "streeteasy_com::_prereqs"
+      ],
+      "ruby_versions":   ["ree-1.8.7-2012.02", "1.9.3p385"]
+    },
+
+    "StreetEasy/se-cli": {}
+  }

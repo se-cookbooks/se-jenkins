@@ -5,7 +5,7 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.7">
-      <projectUrl>https://github.com/<%= @job.github_project %></projectUrl>
+      <projectUrl>https://github.com/<%= @job['project'] %></projectUrl>
     </com.coravy.hudson.plugins.github.GithubProjectProperty>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@1.4.0">
@@ -14,12 +14,12 @@
       <hudson.plugins.git.UserRemoteConfig>
         <name></name>
         <refspec></refspec>
-        <url>git@github.com:<%= @job.github_project %>.git</url>
+        <url>git@github.com:<%= @job['project'] %>.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name><%= @job.branches.join(",") %></name>
+        <name><%= @job['branches'].join(",") %></name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <disableSubmodules>false</disableSubmodules>
@@ -35,7 +35,7 @@
     <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
     <gitTool>Default</gitTool>
     <browser class="hudson.plugins.git.browser.GithubWeb">
-      <url>https://github.com/<%= @job.github_project %>/</url>
+      <url>https://github.com/<%= @job['project'] %>/</url>
     </browser>
     <submoduleCfg class="list"/>
     <relativeTargetDir></relativeTargetDir>
@@ -61,13 +61,13 @@
   <builders>
     <hudson.tasks.Shell>
       <command>#!/bin/bash -l
-<%= @job.build_command %>
+<%= @job['build_command'] %>
       </command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts><%= @job.artifacts.join(",") %></artifacts>
+      <artifacts><%= @job['artifacts'].join(", ") %></artifacts>
       <latestOnly>false</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
     </hudson.tasks.ArtifactArchiver>

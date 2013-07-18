@@ -1,33 +1,20 @@
-require 'ostruct'
-
 include_recipe "percona::server"
 
-# Prereqs to build StreetEasy/se.
-include_recipe "streeteasy_com::_prereqs"
+job_config = data_bag_item("jenkins", "jobs")
 
-# TODO: put jobs into a data bag
-jobs = {
-  "StreetEasy/se-cli" => {
-    artifacts:     ["build.log"],
-    branches:      ["master"],
-    build_command: "script/ci >build.log",
-    ruby_versions: ["ree-1.8.7-2012.02", "1.9.3p385"]
-  },
+job_config['jobs'].each do |project, config|
+  job = node['se-jenkins']['default_job_config'].merge(config)
 
-  "StreetEasy/se" => {
-    artifacts:     ["*.log", "*.html"],
-    branches:      ["specs-without-se-data"],
-    build_command: "script/ci"
-  }
-}
+  job['include_recipes'].each do |recipe|
+    include_recipe recipe
+  end
 
-jobs.each do |job_project, job_data|
-  job = OpenStruct.new(job_data.merge(github_project: job_project))
+  job['name']    ||= project.split('/').last
+  job['project']   = project
+  
+  job_config = File.join(node['jenkins']['server']['home'], "#{job['name']}_config.xml")
 
-  job_name   = job.github_project.split("/").last
-  job_config = File.join(node['jenkins']['server']['home'], "#{job_name}_config.xml")
-
-  jenkins_job job_name do
+  jenkins_job job['name'] do
     action :nothing
     config job_config
   end
@@ -35,7 +22,7 @@ jobs.each do |job_project, job_data|
   template job_config do
     source "job_config.xml.erb"
     variables({ job: job })
-    notifies :update, "jenkins_job[#{job_name}]", :immediately
-    notifies :build,  "jenkins_job[#{job_name}]", :immediately
+    notifies :update, "jenkins_job[#{job['name']}]", :immediately
+    notifies :build,  "jenkins_job[#{job['name']}]", :immediately
   end
 end

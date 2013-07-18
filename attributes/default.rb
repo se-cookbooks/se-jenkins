@@ -15,3 +15,11 @@ default['se-jenkins']['campfire']['room_name'] = ""
 # Global username and email to configure the Git plugin with
 default['se-jenkins']['git']['email'] = ""
 default['se-jenkins']['git']['name']  = ""
+
+default['se-jenkins']['default_job_config'] = {
+  artifacts:       ['*.log', '*.html'],
+  branches:        ['**'],
+  build_command:   'script/ci',
+  include_recipes: [],
+  ruby_versions:   []
+}
