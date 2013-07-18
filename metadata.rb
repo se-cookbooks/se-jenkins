@@ -10,7 +10,8 @@ depends "git"
 depends "jenkins"
 depends "se-ruby", "~> 3.0"
 
-job_config = JSON.parse(File.read('data_bags/jenkins/jobs.json'))
+jobs_data_bag = File.expand_path(File.dirname(__FILE__) + '/data_bags/jenkins/jobs.json')
+job_config = JSON.parse(File.read(jobs_data_bag))
 
 job_config['jobs'].each do |name, config|
   if config.has_key?('include_recipes')
