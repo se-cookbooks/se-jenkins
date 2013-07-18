@@ -24,4 +24,4 @@ suites:
   - recipe[<%= File.expand_path('.').split('/').last %>]
 
   attributes:
-    <%= File.read(".attributes.yml") %>
+<%= File.read(".attributes.yml").gsub(/^/, '    ') %>
