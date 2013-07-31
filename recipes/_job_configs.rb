@@ -1,5 +1,3 @@
-include_recipe "percona::server"
-
 job_config = data_bag_item("jenkins", "jobs")
 
 job_config['jobs'].each do |project, config|
