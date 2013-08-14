@@ -2,6 +2,7 @@
 driver_plugin: vagrant
 driver_config:
   require_chef_omnibus: true
+provisioner: chef_zero
 
 platforms:
 - name: ubuntu-12.04
@@ -25,4 +26,4 @@ suites:
   - recipe[<%= File.expand_path('.').split('/').last %>]
 
   attributes:
-<%= File.read(".attributes.yml").gsub(/^/, '    ') %>
+<%= File.read('.attributes.yml').gsub(/^/, '    ') if File.exists?('.attributes.yml') %>

@@ -14,14 +14,27 @@ node.set['jenkins']['server']['plugins'] = %w(
   token-macro
 )
 
+unless Chef::Config[:solo]
+  include_recipe "se-jenkins::_configure_from_databag"
+end
+
 include_recipe "git"
 include_recipe "jenkins::server"
 
 # Install all the Rubies that we use
-include_recipe "se-ruby::ruby18"
-include_recipe "se-ruby::ruby19"
-include_recipe "se-ruby::ruby20"
-include_recipe "se-ruby"
+#include_recipe "se-ruby::ruby18"
+#include_recipe "se-ruby::ruby19"
+#include_recipe "se-ruby::ruby20"
+#include_recipe "se-ruby"
+
+template "#{node['jenkins']['server']['data_dir']}/config.xml" do
+  source "config.xml.erb"
+
+  owner "jenkins"
+  group "jenkins"
+  mode  0644
+end
+
 
 include_recipe "se-jenkins::_ssh_keys"
 include_recipe "se-jenkins::_bundler_config"

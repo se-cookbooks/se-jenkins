@@ -4,13 +4,16 @@
 .#*
 .*.sw[a-z]
 .attributes.yml
+.attributes.yml.bak
 .bundle
 .cache
+.chef
 .kitchen
 .kitchen.local.yml
 .vagrant
 \#*#
 bin
+data_bags/*
 tmp
 vendor/cookbooks
 Berksfile.lock

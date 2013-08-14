@@ -13,8 +13,8 @@ default['se-jenkins']['campfire']['room_id']   = ""
 default['se-jenkins']['campfire']['room_name'] = ""
 
 # Global username and email to configure the Git plugin with
-default['se-jenkins']['git']['email'] = ""
-default['se-jenkins']['git']['name']  = ""
+default['se-jenkins']['git']['email'] = "StreetEasy"
+default['se-jenkins']['git']['name']  = "dev@streeteasy.com"
 
 default['se-jenkins']['default_job_config'] = {
   artifacts:       ['*.log', '*.html'],

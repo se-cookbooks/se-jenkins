@@ -8,16 +8,19 @@ version          IO.read(File.join(File.dirname(__FILE__), 'VERSION')) rescue "0
 
 depends "git"
 depends "jenkins"
-depends "se-ruby", "~> 3.0"
+depends "se-ruby", "= 3.0.4"
 
-jobs_data_bag = File.expand_path(File.dirname(__FILE__) + '/data_bags/jenkins/jobs.json')
-job_config = JSON.parse(File.read(jobs_data_bag))
+depends "percona"
+depends "streeteasy_com", "= 0.0.5"
 
-job_config['jobs'].each do |name, config|
-  if config.has_key?('include_recipes')
-    config['include_recipes'].each do |recipe|
-      cookbook = recipe.split('::').first
-      depends cookbook
-    end
-  end
-end
+#jobs_data_bag = File.expand_path(File.dirname(__FILE__) + '/data_bags/jenkins/jobs.json')
+#job_config = JSON.parse(File.read(jobs_data_bag))
+
+#job_config['jobs'].each do |name, config|
+#  if config.has_key?('include_recipes')
+#    config['include_recipes'].each do |recipe|
+#      cookbook = recipe.split('::').first
+#      depends cookbook
+#    end
+#  end
+#end
