@@ -3,7 +3,6 @@
 
   "jobs": {
     "StreetEasy/se": {
-      "branches": ["specs-without-se-data"],
       "include_recipes": [
         "percona::server",
         "streeteasy_com::_prereqs"
