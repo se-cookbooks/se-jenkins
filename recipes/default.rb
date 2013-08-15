@@ -14,6 +14,13 @@ node.set['jenkins']['server']['plugins'] = %w(
   token-macro
 )
 
+# Don't enable GitHub OAuth in development
+if File.read("/etc/passwd").match(/vagrant/)
+  node.set['se-jenkins']['use_security'] = false
+else
+  node.set['se-jenkins']['use_security'] = true
+end
+
 unless Chef::Config[:solo]
   include_recipe "se-jenkins::_configure_from_databag"
 end
@@ -26,6 +33,7 @@ include_recipe "jenkins::server"
 #include_recipe "se-ruby::ruby19"
 #include_recipe "se-ruby::ruby20"
 #include_recipe "se-ruby"
+
 
 template "#{node['jenkins']['server']['data_dir']}/config.xml" do
   source "config.xml.erb"

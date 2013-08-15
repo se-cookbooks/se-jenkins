@@ -4,6 +4,7 @@
   <version>1.0</version>
   <numExecutors>2</numExecutors>
   <mode>NORMAL</mode>
+  <% if node['se-jenkins']['use_security'] %>
   <useSecurity>true</useSecurity>
   <authorizationStrategy class="org.jenkinsci.plugins.GithubAuthorizationStrategy" plugin="github-oauth@0.14">
     <rootACL>
@@ -25,6 +26,7 @@
     <clientID><%= node['se-jenkins']['github']['client_id'] %></clientID>
     <clientSecret><%= node['se-jenkins']['github']['client_secret'] %></clientSecret>
   </securityRealm>
+  <% end %>
   <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
   <workspaceDir>${ITEM_ROOTDIR}/workspace</workspaceDir>
   <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
