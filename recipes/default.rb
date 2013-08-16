@@ -1,6 +1,9 @@
 node.set['jenkins']['server']['version']      = '1.522'
 node.set['jenkins']['server']['war_checksum'] = 'e227c291191b2554267b4b338ea34ef86a9aa42096928e42bebdf6e90cf3e314'
 
+node.set['jenkins']['server']['host'] = 'ci.s--e.net'
+node.set['jenkins']['server']['url'] = "http://#{node['jenkins']['server']['host']}:#{node['jenkins']['server']['port']}/"
+
 node.set['jenkins']['server']['plugins'] = %w(
   campfire
   git
