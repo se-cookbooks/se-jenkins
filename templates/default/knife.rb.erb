@@ -1,0 +1,8 @@
+node_name  "jenkins"
+client_key "#{ENV['HOME']}/.chef/jenkins.pem"
+
+chef_server_url "https://chef11.s--e.net"
+
+syntax_check_path "#{ENV['HOME']}/.chef/syntax_check_cache"
+
+cache_options path: "#{ENV['HOME']}/.chef/cache/checksums", skip_expires: true

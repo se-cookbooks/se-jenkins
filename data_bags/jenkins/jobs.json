@@ -10,6 +10,8 @@
       "ruby_versions":   ["ree-1.8.7-2012.02", "1.9.3p385"]
     },
 
-    "StreetEasy/se-cli": {}
+    "StreetEasy/se-cli": {},
+
+    "StreetEasy/chef-se-base": {}
   }
 }
