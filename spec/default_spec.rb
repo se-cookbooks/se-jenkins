@@ -14,10 +14,6 @@ describe 'se-jenkins::default' do
     expect(chef_run.node['jenkins']['server']['version']).to match(/\d+\.\d+/)
   end
 
-  it 'sets the checksum' do
-    expect(chef_run.node['jenkins']['server']['war_checksum']).not_to be_blank
-  end
-
   %w(campfire git git-client github github-api github-oauth javadoc mailer rake token-macro).each do |plugin|
     it "includes the #{plugin} plugin" do
       expect(chef_run.node['jenkins']['server']['plugins']).to include(plugin)
