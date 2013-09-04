@@ -4,7 +4,7 @@ gem 'berkshelf', '~> 2.0.0'
 gem 'thor-scmversion'
 
 group :test do
-  gem 'chefspec',         '~> 1.3'
+  gem 'chefspec',         '~> 2.0'
   gem 'foodcritic',       '~> 2.1'
   gem 'test-kitchen',     '~> 1.0.0.beta'
   gem 'kitchen-ec2',      '~> 0.5'
