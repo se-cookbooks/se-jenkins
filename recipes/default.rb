@@ -36,13 +36,14 @@ include_recipe "se-ruby::ruby19"
 include_recipe "se-ruby::ruby20"
 include_recipe "se-ruby"
 
-
-template "#{node['jenkins']['server']['data_dir']}/config.xml" do
+template "#{node['jenkins']['server']['home']}/config.xml" do
   source "config.xml.erb"
 
   owner "jenkins"
   group "jenkins"
   mode  0644
+
+  notifies :restart, "service[jenkins]"
 end
 
 include_recipe "se-jenkins::_aws_credentials"
