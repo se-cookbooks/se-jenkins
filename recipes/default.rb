@@ -27,8 +27,18 @@ if !Chef::Config[:solo] && node.chef_environment == "production"
   node.set['jenkins']['server']['url'] = "http://#{node['jenkins']['server']['host']}:#{node['jenkins']['server']['port']}/"
 end
 
+include_recipe "docker"
 include_recipe "git"
 include_recipe "jenkins::server"
+
+service "docker" do
+  action :nothing
+end
+
+group "docker" do
+  members node['jenkins']['server']['user']
+  notifies :restart, "service[docker]"
+end
 
 # Install all the Rubies that we use
 include_recipe "se-ruby::ruby18"
