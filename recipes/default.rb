@@ -1,4 +1,4 @@
-node.set['jenkins']['server']['version']      = '1.529'
+node.set['jenkins']['server']['version']      = '1.530'
 
 node.set['jenkins']['server']['plugins'] = %w(
   campfire
