@@ -18,6 +18,12 @@ if File.read("/etc/passwd").match(/vagrant/)
   node.set['se-jenkins']['use_security'] = false
 else
   node.set['se-jenkins']['use_security'] = true
+  password_file = '/etc/chef/jenkins_cli_token'
+
+  if File.exists?(password_file)
+    node.set['jenkins']['cli']['username']      = 'se-system'
+    node.set['jenkins']['cli']['password_file'] = password_file
+  end
 end
 
 if !Chef::Config[:solo] && node.chef_environment == "production"
