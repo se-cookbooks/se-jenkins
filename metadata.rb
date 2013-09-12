@@ -4,7 +4,7 @@ maintainer_email "se-jenkins"
 license          "All rights reserved"
 description      "Installs/Configures se-jenkins"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '1.1.0'
+version          '1.1.1'
 
 depends "docker"
 depends "git"
